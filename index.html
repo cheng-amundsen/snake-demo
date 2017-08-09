@@ -119,7 +119,7 @@
 
     var arrow = document.getElementById("arrow");
 
-    arrow.addEventListener("click", function (e) {
+    arrow.addEventListener("mousedown", function (e) {
       var e = e || window.event;
       var target = e.target || e.srcElement;
       if (target.id == "top") {
