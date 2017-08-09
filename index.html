@@ -8,7 +8,7 @@
     <style>
         body {
             margin: 0;
-            overflow: hidden;
+            /*overflow: hidden;*/
             text-align: center;
         }
         #container {
@@ -35,6 +35,51 @@
             right: 10%;
             cursor: pointer;
         }
+        #arrow {
+            position: relative;
+            width: 300px;
+            margin: 0 auto;
+        }
+        #top {
+            position: absolute;
+            top: 0;
+            left: 100px;
+            width: 0;
+            height: 0;
+            border: 50px solid transparent;
+            border-bottom: 50px solid #e17446;
+            cursor: pointer;
+        }
+        #left {
+            position: absolute;
+            top: 100px;
+            left: 0;
+            width: 0;
+            height: 0;
+            border: 50px solid transparent;
+            border-right: 50px solid #e17446;
+            cursor: pointer;
+        }
+        #right {
+            position: absolute;
+            top: 100px;
+            left: 200px;
+            width: 0;
+            height: 0;
+            border: 50px solid transparent;
+            border-left: 50px solid #e17446;
+            cursor: pointer;
+        }
+        #bottom {
+            position: absolute;
+            top: 200px;
+            left: 100px;
+            width: 0;
+            height: 0;
+            border: 50px solid transparent;
+            border-top: 50px solid #e17446;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -47,6 +92,14 @@
         <p>当前得分：<span id="score">0</span></p>
         <p>最高得分：<span id="high-score">0</span></p>
         <p>用时：<span id="time">0:00:00</span></p>
+    </div>
+</div>
+<div>
+    <div id="arrow">
+        <div id="top"></div>
+        <div id="left"></div>
+        <div id="right"></div>
+        <div id="bottom"></div>
     </div>
 </div>
 
@@ -63,6 +116,27 @@
       highScore.innerText = Snake.getHighScore();
       time.innerText = Snake.getGameTime();
     }, 300);
+
+    var arrow = document.getElementById("arrow");
+
+    arrow.addEventListener("click", function (e) {
+      var e = e || window.event;
+      var target = e.target || e.srcElement;
+      if (target.id == "top") {
+        Snake.snake.direction = 1;
+      }
+      if (target.id == "right") {
+        Snake.snake.direction = 2;
+      }
+      if (target.id == "bottom") {
+        Snake.snake.direction = 3;
+      }
+      if (target.id == "left") {
+        Snake.snake.direction = 0;
+      }
+    });
+
+
 
 </script>
 </body>
