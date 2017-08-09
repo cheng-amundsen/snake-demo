@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <title>贪吃蛇demo</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+        #container {
+            display: inline-block;
+            position: relative;
+            background: #0097e1;
+            border: 1px solid #777;
+        }
+        #info {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            text-align: left;
+        }
+        #start {
+            position: absolute;
+            top: 70%;
+            left: 43%;
+            cursor: pointer;
+        }
+        #stop {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <canvas id="main">ERROR: 101 LITTLE BUGS IN THE CODE!</canvas>
+
+    <canvas id="start" width="128" height="128"></canvas>
+    <canvas id="stop"></canvas>
+    <div id="info">
+        <p>当前得分：<span id="score">0</span></p>
+        <p>最高得分：<span id="high-score">0</span></p>
+        <p>用时：<span id="time">0:00:00</span></p>
+    </div>
+</div>
+
+<script src="./snake.js"></script>
+<script>
+    var Snake = new SnakeGame("main", "start", "stop");
+    var score = document.getElementById("score");
+    var highScore = document.getElementById("high-score");
+    var time = document.getElementById("time");
+    var stop = document.getElementById("stop");
+
+    var interval = setInterval(function () {
+      score.innerText = Snake.getScore();
+      highScore.innerText = Snake.getHighScore();
+      time.innerText = Snake.getGameTime();
+    }, 300);
+
+</script>
+</body>
+</html>
